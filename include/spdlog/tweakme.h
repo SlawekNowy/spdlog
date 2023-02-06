@@ -132,7 +132,9 @@
 // __PRETTY_FUNCTION__ might be nicer in clang/gcc, and __FUNCTION__ in msvc.
 // Defaults to __FUNCTION__ (should work on all compilers) if not defined.
 //
- #ifdef __PRETTY_FUNCTION__
+ //#ifdef __PRETTY_FUNCTION__ //this is resolved in compiler step not in preprocessing!!!
+
+ #if defined (__GNUC__) && defined (__cplusplus) && defined (__clang__)
  # define SPDLOG_FUNCTION __PRETTY_FUNCTION__
  #else
  # define SPDLOG_FUNCTION __FUNCTION__
